@@ -54,9 +54,9 @@ $(function () {
             //     password: $('#reg-form [name=password]').val(),
             //     repassword: $('#reg-form [name=repassword]').val(),
             // }),
-            data:$(this).serialize(),
+            data: $(this).serialize(),
             success(res) {
-                if(res.code !== 0) return layer.msg(res.message)
+                if (res.code !== 0) return layer.msg(res.message)
                 layer.msg(res.message)
                 $('#go2Login').click()
             }
@@ -64,19 +64,19 @@ $(function () {
     })
 
     // 登录
-    $('#login-form').on('submit',function(e){
+    $('#login-form').on('submit', function (e) {
         e.preventDefault()
         // console.log('ok')
         $.ajax({
             type: 'POST',
             url: '/api/login',
             contentType: 'application/json',
-            data:$(this).serialize(),
+            data: $(this).serialize(),
             success(res) {
                 console.log(res)
-                if(res.code !== 0) return layer.msg(res.message)
+                if (res.code !== 0) return layer.msg(res.message)
                 // 如果登录成功，将token值保存到本地，跳转到主页
-                localStorage.setItem('Big_Event_token',res.token)
+                localStorage.setItem('Big_Event_token', res.token)
                 // token: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIyNjEsInVzZXJuYW1lIjoiYmgiLCJuaWNrbmFtZSI6IiIsImVtYWlsIjoiIiwiaWF0IjoxNjY0NDM1MTAwLCJleHAiOjE2NjQ0NzExMDB9.ccLvb2qOPgWFHe1WLMHnoLKNIAK7Kzf_GfFNqNUh1iM"
                 location.href = '/home.html'
             }

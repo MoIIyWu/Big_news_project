@@ -11,7 +11,20 @@ $.ajaxPrefilter(function (option) {
     }
     option.url = 'http://big-event-vue-api-t.itheima.net' + option.url,
 
-    // 设置统一的请求头
-    option.contentType = 'application/json',
-    option.data = format2Json(option.data)
+        // 设置统一的请求头
+        option.contentType = 'application/json',
+        option.data = option.data && format2Json(option.data)
+
+    if (option.url.includes('/my')) {
+        option.headers = {
+            Authorization: localStorage.getItem('Big_Event_token') || '',
+        }
+    }
+
+    option.error = function (err) {
+        if (err.responseJSON?.code === 1 && err.responseJSON?.message === '身份认证失败！') {
+            localStorage.clear()
+            location.href = '/login.html'
+        }
+    }
 })
