@@ -39,6 +39,7 @@ a {
 .user-box img {
     width: 40px;
     height: 40px;
+    display: none;
 }
 
 .layui-nav-img {

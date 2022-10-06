@@ -33,15 +33,16 @@ function getUserInfo() {
 }
 
 function renderUserAvatar(res) {
+    const name = res.data.nickname || res.data.username
     if (res.data.user_pic) {
         $('.text-avatar').hide()
-        $('.user-box img').css('src', res.data.user_pic)
+        $('.user-box img').css('src', res.data.user_pic).show()
     } else {
         $('.layui-nav-img').hide()
         // 获取用户名的第一个字符
-        const name = res.data.nickname || res.data.username
+        
         const char = name.charAt(0).toUpperCase()
         $('.text-avatar').html(char)
     }
-    $('.text').html(`欢迎&nbsp;&nbsp;${res.data.username}`)
+    $('.text').html(`欢迎&nbsp;&nbsp;${name}`)
 }
