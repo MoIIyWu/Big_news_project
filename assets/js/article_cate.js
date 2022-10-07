@@ -19,7 +19,7 @@ $(function () {
     let index = null
     // 添加文章分类
     $('#btnAdd').on('click', function () {
-        indexAdd = layer.open({
+        index= layer.open({
             type: 1,
             area: ['500px', '250px'],
             title: '添加分类名称',
